@@ -6,7 +6,7 @@
     <groupId>de.drbunsen</groupId>
     <artifactId>fluentxmlwrapper</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
