@@ -1,4 +1,4 @@
-package de.drbunsen.butoli;
+package de.drbunsen.fluentxmlwrapper;
 
 import lombok.NonNull;
 import org.w3c.dom.Document;
