@@ -1,4 +1,4 @@
-package de.drbunsen.fluentxmlwrapper;
+package de.drbunsen.common.fluentxmlwrapper;
 
 import lombok.NonNull;
 import org.w3c.dom.Document;
