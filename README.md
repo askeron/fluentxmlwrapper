@@ -7,17 +7,11 @@ In contrast to other similar project the interface follows the principle of clea
 ### Maven dependency
 
 ```xml
-<dependencies>
-    ...
-
-    <dependency>
-        <groupId>de.drbunsen.common</groupId>
-        <artifactId>fluentxmlwrapper</artifactId>
-        <version>0.1.0</version>
-    </dependency>
-
-    ...
-</dependencies>
+<dependency>
+    <groupId>de.drbunsen.common</groupId>
+    <artifactId>fluentxmlwrapper</artifactId>
+    <version>0.1.0</version>
+</dependency>
 ```
 
 Add the following repository to use snapshots.
