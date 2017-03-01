@@ -80,7 +80,7 @@ public class FluentXmlWrapper {
     }
 
     private static List<FluentXmlWrapper> getXmlElementWrapperList(NodeList nodeList) {
-        List<FluentXmlWrapper> result = new ArrayList<>();
+        List<FluentXmlWrapper> result = new ArrayList<FluentXmlWrapper>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             final Node newElement = nodeList.item(i);
             if (newElement.getNodeType() == Node.ELEMENT_NODE) {
