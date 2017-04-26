@@ -17,9 +17,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +46,6 @@ public class FluentXmlWrapper {
             return of(node);
         }
         return null;
-    }
-
-    private static Element getElement(Node node) {
-        return (Element) node;
     }
 
     public List<FluentXmlWrapper> getElements(@NonNull String name) {
@@ -155,7 +149,11 @@ public class FluentXmlWrapper {
     }
 
     public static FluentXmlWrapper of(final String xmlString) throws ParserConfigurationException, SAXException, IOException {
-        return FluentXmlWrapper.of(getXmlDocumentFromString(xmlString).getDocumentElement());
+        return FluentXmlWrapper.of(getXmlDocument(xmlString).getDocumentElement());
+    }
+
+    public static FluentXmlWrapper of(final File file) throws ParserConfigurationException, SAXException, IOException {
+        return FluentXmlWrapper.of(getXmlDocument(file).getDocumentElement());
     }
 
     public static FluentXmlWrapper ofNewRootElement(final String rootElementName) throws ParserConfigurationException, IOException, SAXException {
@@ -172,15 +170,24 @@ public class FluentXmlWrapper {
         if (node.getNodeType() != Node.ELEMENT_NODE) {
             throw new IllegalArgumentException("not an element");
         }
-        return of(getElement(node));
+        return of((Element) node);
     }
 
-    private static Document getXmlDocumentFromString(final String xmlString) throws ParserConfigurationException, SAXException, IOException {
+    private static Document getXmlDocument(final String xmlString) throws ParserConfigurationException, SAXException, IOException {
+        return getXmlDocument(new InputSource(new StringReader(xmlString)));
+    }
+
+    private static Document getXmlDocument(final File file) throws ParserConfigurationException, SAXException, IOException {
+        return getXmlDocument(new InputSource(new FileInputStream(file)));
+    }
+
+    private static Document getXmlDocument(InputSource inputSource) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-        Document doc = docBuilder.parse(new InputSource(new StringReader(xmlString)));
+        Document doc = docBuilder.parse(inputSource);
 
         doc.getDocumentElement().normalize();
         return doc;
     }
+
 }
