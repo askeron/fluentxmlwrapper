@@ -39,6 +39,12 @@ public class FluentXmlWrapper {
         return of(newChild);
     }
 
+    public FluentXmlWrapper addElementBefore(@NonNull String name, FluentXmlWrapper referenceElement) {
+        final Element newChild = element.getOwnerDocument().createElement(name);
+        element.insertBefore(newChild,referenceElement.getW3cElement());
+        return of(newChild);
+    }
+
     public FluentXmlWrapper getElement(@NonNull String name) {
         final NodeList nodeList = element.getElementsByTagName(name);
         if (nodeList.getLength() > 0) {
