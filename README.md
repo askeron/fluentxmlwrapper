@@ -37,8 +37,8 @@ final String newXml = FluentXmlWrapper.of(new File("text.xml"))
         .getElement("devices")
         .addElement("device")
         .setAttribute("id", "41234")
-        .addElement("ipadress").setText("192.168.0.123").getParentElement()
-        .addElement("ipadress").setText("192.168.0.201").getParentElement()
+        .addElement("ipaddress").setText("192.168.0.123").getParentElement()
+        .addElement("ipaddress").setText("192.168.0.201").getParentElement()
         .toXmlWithDefaultUtf8Header();
 ```
 
