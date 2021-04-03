@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/askeron/fluentxmlwrapper.svg?style=flat)](https://travis-ci.org/askeron/fluentxmlwrapper)
 [![License](https://img.shields.io/github/license/askeron/fluentxmlwrapper.svg?style=flat)](https://github.com/askeron/fluentxmlwrapper/blob/master/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/de.drbunsen.common/fluentxmlwrapper.svg?style=flat)](https://mvnrepository.com/artifact/de.drbunsen.common/fluentxmlwrapper)
-[![Required Java 5.0](https://img.shields.io/badge/Required-Java%205.0-blue.svg)]()
+[![Required Java 8.0](https://img.shields.io/badge/Required-Java%208.0-blue.svg)]()
 # fluentxmlwrapper
 
 A java library with a simple wrapper for XML Processing with a fluent interface.
