@@ -30,9 +30,7 @@ class FluentXmlWrapper private constructor(private val w3cElement: Element) {
         return of(newChild)
     }
 
-    fun getElement(name: String): FluentXmlWrapper {
-        return getElementOrNull(name)!!
-    }
+    fun getElement(name: String): FluentXmlWrapper = getElementOrNull(name)!!
 
     fun getElementOrNull(name: String): FluentXmlWrapper? {
         val nodeList = w3cElement.getElementsByTagName(name)
@@ -43,13 +41,10 @@ class FluentXmlWrapper private constructor(private val w3cElement: Element) {
         return null
     }
 
-    fun getElements(name: String): List<FluentXmlWrapper> {
-        return getXmlElementWrapperList(w3cElement.getElementsByTagName(name))
-    }
+    fun getElements(name: String): List<FluentXmlWrapper> =
+        getXmlElementWrapperList(w3cElement.getElementsByTagName(name))
 
-    fun hasElement(name: String): Boolean {
-        return getElementCount(name) > 0
-    }
+    fun hasElement(name: String): Boolean = getElementCount(name) > 0
 
     fun removeElement(name: String): FluentXmlWrapper {
         val nodeList = w3cElement.getElementsByTagName(name)
@@ -59,23 +54,16 @@ class FluentXmlWrapper private constructor(private val w3cElement: Element) {
         return this
     }
 
-    fun getElementCount(name: String): Int {
-        return w3cElement.getElementsByTagName(name).length
+    fun getElementCount(name: String): Int = w3cElement.getElementsByTagName(name).length
+
+    fun getAllElements(): List<FluentXmlWrapper> {
+        val nodeList = w3cElement.childNodes
+        return getXmlElementWrapperList(nodeList)
     }
 
-    val allElements: List<FluentXmlWrapper>
-        get() {
-            val nodeList = w3cElement.childNodes
-            return getXmlElementWrapperList(nodeList)
-        }
+    fun hasAttribute(name: String): Boolean = w3cElement.hasAttribute(name)
 
-    fun hasAttribute(name: String): Boolean {
-        return w3cElement.hasAttribute(name)
-    }
-
-    fun getAttribute(name: String): String {
-        return w3cElement.getAttribute(name)
-    }
+    fun getAttribute(name: String): String = w3cElement.getAttribute(name)
 
     fun setAttribute(name: String, value: String): FluentXmlWrapper {
         w3cElement.setAttribute(name, value)
@@ -87,25 +75,22 @@ class FluentXmlWrapper private constructor(private val w3cElement: Element) {
         return this
     }
 
-    val name: String
-        get() = w3cElement.tagName
+    fun getName(): String = w3cElement.tagName
 
-    var text: String?
-        get() = w3cElement.textContent
-        set(value) {w3cElement.textContent = value}
+    fun getText(): String = w3cElement.textContent
 
-    val parentElement: FluentXmlWrapper
-        get() = of(w3cElement.parentNode)
-    val rootElement: FluentXmlWrapper
-        get() = of(w3cElement.ownerDocument.documentElement)
-
-    fun toXmlWithDefaultUtf8Header(): String {
-        return toXmlWithCustomHeader("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
+    fun setText(value: String): FluentXmlWrapper {
+        w3cElement.textContent = value
+        return this
     }
 
-    fun toXmlWithoutHeader(): String {
-        return toXmlWithCustomHeader(null)
-    }
+    fun getParentElement(): FluentXmlWrapper = of(w3cElement.parentNode)
+
+    fun getRootElement(): FluentXmlWrapper = of(w3cElement.ownerDocument.documentElement)
+
+    fun toXmlWithDefaultUtf8Header(): String = toXmlWithCustomHeader("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
+
+    fun toXmlWithoutHeader(): String = toXmlWithCustomHeader(null)
 
     private fun toXmlWithCustomHeader(header: String?): String {
         val tf = TransformerFactory.newInstance()

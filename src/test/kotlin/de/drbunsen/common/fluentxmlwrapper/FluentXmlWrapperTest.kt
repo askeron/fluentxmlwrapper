@@ -8,6 +8,6 @@ internal class FluentXmlWrapperTest {
     fun testSimple() {
         assertEquals("some text", FluentXmlWrapper.of("<example><subnode>some text</subnode></example>")
             .getElement("subnode")
-            .text)
+            .getText())
     }
 }
