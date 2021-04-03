@@ -12,7 +12,7 @@ repositories {
 }
 
 group = "de.drbunsen.common"
-version = "0.3.4-SNAPSHOT"
+version = "0.4.0"
 
 val isSnapshot = (version as String).endsWith("-SNAPSHOT")
 
