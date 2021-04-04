@@ -13,7 +13,7 @@ In contrast to other similar project the interface follows the principle of clea
 <dependency>
     <groupId>de.drbunsen.common</groupId>
     <artifactId>fluentxmlwrapper</artifactId>
-    <version>0.1.1</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
