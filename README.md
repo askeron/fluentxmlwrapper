@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/travis/askeron/fluentxmlwrapper.svg?style=flat)](https://travis-ci.org/askeron/fluentxmlwrapper)
+![CI](https://github.com/askeron/fluentxmlwrapper/workflows/CI/badge.svg)
 [![License](https://img.shields.io/github/license/askeron/fluentxmlwrapper.svg?style=flat)](https://github.com/askeron/fluentxmlwrapper/blob/master/LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/de.drbunsen.common/fluentxmlwrapper.svg?style=flat)](https://mvnrepository.com/artifact/de.drbunsen.common/fluentxmlwrapper)
 [![Required Java 8.0](https://img.shields.io/badge/Required-Java%208.0-blue.svg)]()
@@ -7,7 +7,7 @@
 A java library with a simple wrapper for XML Processing with a fluent interface.
 In contrast to other similar project the interface follows the principle of clean code and can be used for reading and writing XML documents.
 
-### Maven dependency
+## Maven dependency
 
 ```xml
 <dependency>
@@ -17,7 +17,11 @@ In contrast to other similar project the interface follows the principle of clea
 </dependency>
 ```
 
+### Snapshots
+
 Add the following repository to use snapshots.
+
+#### Maven
 
 ```xml
 <repository>
@@ -30,7 +34,29 @@ Add the following repository to use snapshots.
 </repository>
 ```
 
-### Example
+#### Gradle (Groovy)
+
+```
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+```
+
+#### Gradle (Kotlin)
+
+```
+repositories {
+    mavenCentral()
+    maven {
+        setUrl("https://oss.sonatype.org/content/repositories/snapshots/")
+    }
+}
+```
+
+## Example
 
 ```java
 final String newXml = FluentXmlWrapper.of(new File("text.xml"))
@@ -39,6 +65,6 @@ final String newXml = FluentXmlWrapper.of(new File("text.xml"))
         .setAttribute("id", "41234")
         .addElement("ipaddress").setText("192.168.0.123").getParentElement()
         .addElement("ipaddress").setText("192.168.0.201").getParentElement()
-        .toXmlWithDefaultUtf8Header();
+        .toXmlWithDefaultUtf8Header(false);
 ```
 
