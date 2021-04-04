@@ -88,14 +88,17 @@ class FluentXmlWrapper private constructor(private val w3cElement: Element) {
 
     fun getRootElement(): FluentXmlWrapper = of(w3cElement.ownerDocument.documentElement)
 
-    fun toXmlWithDefaultUtf8Header(): String = toXmlWithCustomHeader("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
+    fun toXmlWithDefaultUtf8Header(intend: Boolean): String = toXmlWithCustomHeader("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>", intend)
 
-    fun toXmlWithoutHeader(): String = toXmlWithCustomHeader(null)
+    fun toXmlWithoutHeader(intend: Boolean): String = toXmlWithCustomHeader(null, intend)
 
-    private fun toXmlWithCustomHeader(header: String?): String {
+    private fun toXmlWithCustomHeader(header: String?, intend: Boolean): String {
         val tf = TransformerFactory.newInstance()
         val transformer = tf.newTransformer()
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes")
+        if (intend) {
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        }
         val writer = StringWriter()
         if (header != null) {
             writer.append(header)
